@@ -1,11 +1,18 @@
-sig Tutor {}
-sig Learner {
-    Registered: set Unit,
-    Advisor: lone Tutor 
+sig Author {}
+
+sig Member {}
+
+sig Librarian extends Member {}
+
+sig Book {
+    authors: some Author,
+    borrowedBy: lone Member
 }
-sig Unit {
-    Coordinator: one Tutor,
-    Predecessor: set Unit
+
+one sig Library {
+    catalog: set Book,
+    members: set Member
 }
-pred ValidState {}
-run ValidState for 3
+
+pred Show {}
+run Show for 3
