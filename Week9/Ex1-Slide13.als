@@ -21,7 +21,9 @@ pred crossRead[u: User, d: Doc] {
   d.dept not in u.depts
 }
 
-//run crossRead for 3
-//
-//run { some u: User, d: Doc |
-//  crossRead[u, d] } for 3
+assert OwnerOnlyCross {
+	all u: User, d: u.reads |
+	d.dept not in u.depts
+	implies d.owner = u
+}
+check OwnerOnlyCross for 5
